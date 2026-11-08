@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0c0818">
+  <meta name="description" content="Frecuencia Pop - Radio Virtual 24/7 con sonido envolvente y multiplataforma.">
+  <meta property="og:title" content="Frecuencia Pop">
+  <meta property="og:image" content="img/portada.webp">
+  
+  <title>FRECUENCIA POP</title>
+
+  <!-- Google Font: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="img/portada.webp">
+
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Mensaje Toast -->
+  <div id="toastMsg" class="toast-msg">Conectando a Frecuencia Pop...</div>
+
+  <div class="app-screen">
+    
+    <!-- 1. Encabezado / Título -->
+    <header class="top-header">
+      <h1 class="brand-title">FRECUENCIA POP</h1>
+    </header>
+
+    <!-- 2. Escenario Hero: Chica Principal + Ecualizador + 3 Características con Contenedor -->
+    <main class="hero-stage">
+      
+      <!-- Ecualizador Canvas de Ondas Neón por detrás -->
+      <canvas id="soundwaveCanvas" class="soundwave-canvas"></canvas>
+
+      <!-- Chica con Audífonos en el centro -->
+      <div class="hero-girl-wrapper">
+        <img src="img/chica principal.png" alt="Frecuencia Pop" class="hero-girl-img">
+      </div>
+
+      <!-- 3 Características con Contenedor Vidriado -->
+      <div class="features-column">
+        
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </div>
+          <span class="feature-label">Sonido Envolvente</span>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <span class="feature-label">Streaming 24/7</span>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <rect x="16" y="10" width="6" height="10" rx="1" fill="#0c0818" stroke="currentColor"></rect>
+            </svg>
+          </div>
+          <span class="feature-label">Multiplataforma</span>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- 3. Tira de Contenedores de Cantantes (Puramente informativo: Foto + Nombre y Apellido) -->
+    <section class="artists-strip">
+      <div id="artistsTrack" class="artists-track">
+
+        <!-- 1. Ariana Grande -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #2b113a, #701a75);">
+          <div class="artist-img-box">
+            <img src="img/Ariana Grande.jfif" alt="Ariana Grande" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Ariana Grande</h3>
+          </div>
+        </article>
+
+        <!-- 2. Benson Boone -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #4c1124, #a81c45);">
+          <div class="artist-img-box">
+            <img src="img/Benson Boone.jfif" alt="Benson Boone" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Benson Boone</h3>
+          </div>
+        </article>
+
+        <!-- 3. Bruno Mars -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #1f1b4a, #4f46e5);">
+          <div class="artist-img-box">
+            <img src="img/Bruno Mars.jfif" alt="Bruno Mars" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Bruno Mars</h3>
+          </div>
+        </article>
+
+        <!-- 4. Damiano David -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #172554, #2563eb);">
+          <div class="artist-img-box">
+            <img src="img/Damiano David.jfif" alt="Damiano David" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Damiano David</h3>
+          </div>
+        </article>
+
+        <!-- 5. Ed Sheeran -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #451a03, #c2410c);">
+          <div class="artist-img-box">
+            <img src="img/Ed Sheeran.jfif" alt="Ed Sheeran" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Ed Sheeran</h3>
+          </div>
+        </article>
+
+        <!-- 6. Jason Mraz -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #064e3b, #0d9488);">
+          <div class="artist-img-box">
+            <img src="img/Jason Mraz.jfif" alt="Jason Mraz" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Jason Mraz</h3>
+          </div>
+        </article>
+
+        <!-- 7. Justin Bieber -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #581c87, #db2777);">
+          <div class="artist-img-box">
+            <img src="img/Justin Bieber.jfif" alt="Justin Bieber" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Justin Bieber</h3>
+          </div>
+        </article>
+
+        <!-- 8. Lewis Capaldi -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #1e1b4b, #3b82f6);">
+          <div class="artist-img-box">
+            <img src="img/Lewis Capaldi.jfif" alt="Lewis Capaldi" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Lewis Capaldi</h3>
+          </div>
+        </article>
+
+        <!-- 9. Marshmello -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #164e63, #0891b2);">
+          <div class="artist-img-box">
+            <img src="img/Marshmello.jfif" alt="Marshmello" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Marshmello</h3>
+          </div>
+        </article>
+
+        <!-- 10. Myles Smith -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #701a75, #e11d48);">
+          <div class="artist-img-box">
+            <img src="img/Myles Smith.jfif" alt="Myles Smith" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Myles Smith</h3>
+          </div>
+        </article>
+
+        <!-- 11. Måneskin -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #450a0a, #be123c);">
+          <div class="artist-img-box">
+            <img src="img/Måneskin.jfif" alt="Måneskin" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Måneskin</h3>
+          </div>
+        </article>
+
+        <!-- 12. Olivia Rodrigo -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #3b0764, #9333ea);">
+          <div class="artist-img-box">
+            <img src="img/Olivia Rodrigo.jfif" alt="Olivia Rodrigo" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Olivia Rodrigo</h3>
+          </div>
+        </article>
+
+        <!-- 13. Shawn Mendes -->
+        <article class="artist-card" style="--card-bg: linear-gradient(135deg, #1e3a8a, #0284c7);">
+          <div class="artist-img-box">
+            <img src="img/Shawn Mendes.jfif" alt="Shawn Mendes" class="artist-img" loading="lazy">
+          </div>
+          <div class="artist-info-box">
+            <h3 class="artist-name">Shawn Mendes</h3>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. Reproductor Flotante en la Base -->
+    <footer class="player-dock">
+      
+      <!-- Izquierda: Portada + Estás Escuchando -->
+      <div class="player-left">
+        <div class="player-thumb">
+          <img src="img/portada.webp" alt="Frecuencia Pop">
+        </div>
+        <div class="player-meta">
+          <span class="player-meta-label">Estás Escuchando:</span>
+          <strong class="player-meta-station">Frecuencia Pop</strong>
+        </div>
+      </div>
+
+      <!-- Centro: Botón Circular de Play/Pausa -->
+      <div class="player-center">
+        <button id="playBtn" class="play-btn-circle" aria-label="Reproducir o Pausar">
+          <!-- Play Icon -->
+          <svg id="playIcon" viewBox="0 0 24 24">
+            <polygon points="7 4 19 12 7 20 7 4"></polygon>
+          </svg>
+
+          <!-- Pause Icon -->
+          <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none;">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+
+          <!-- Spinner Icon -->
+          <svg id="spinnerIcon" class="spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display: none;">
+            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke="#fff"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Derecha: Bocina + Control de Volumen -->
+      <div class="player-right">
+        <button id="volBtn" class="vol-btn" aria-label="Silenciar">
+          <svg id="volIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+        <input type="range" id="volSlider" class="vol-slider" min="0" max="100" value="85" aria-label="Volumen">
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- Lógica Integrada de Audio Yanapak, Ecualizador y Carrusel -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Enlace de Transmisión Oficial Yanapak
+      const STREAM_URL = 'https://radios.yanapak.org/frecuenciapop';
+      
+      const audio = new Audio();
+      audio.preload = 'none';
+
+      const playBtn = document.getElementById('playBtn');
+      const playIcon = document.getElementById('playIcon');
+      const pauseIcon = document.getElementById('pauseIcon');
+      const spinnerIcon = document.getElementById('spinnerIcon');
+      const volBtn = document.getElementById('volBtn');
+      const volIcon = document.getElementById('volIcon');
+      const volSlider = document.getElementById('volSlider');
+      const soundwaveCanvas = document.getElementById('soundwaveCanvas');
+      const artistsTrack = document.getElementById('artistsTrack');
+      const toastMsg = document.getElementById('toastMsg');
+
+      let isPlaying = false;
+      let isBuffering = false;
+      let lastVolume = 0.85;
+
+      audio.volume = 0.85;
+
+      // 2. Control Play / Pausa
+      function togglePlay() {
+        if (isPlaying) {
+          pauseRadio();
+        } else {
+          playRadio();
+        }
+      }
+
+      function playRadio() {
+        isBuffering = true;
+        updateUI();
+        showToast('Sintonizando Frecuencia Pop en vivo...');
+
+        audio.src = STREAM_URL + '?nocache=' + Date.now();
+
+        audio.play().then(() => {
+          isPlaying = true;
+          isBuffering = false;
+          updateUI();
+          showToast('¡En vivo en Frecuencia Pop!');
+          setupMediaSession();
+        }).catch(err => {
+          console.warn('Playback error:', err);
+          isBuffering = false;
+          isPlaying = false;
+          updateUI();
+          showToast('Presiona Play para iniciar la transmisión');
+        });
+      }
+
+      function pauseRadio() {
+        audio.pause();
+        audio.src = '';
+        isPlaying = false;
+        isBuffering = false;
+        updateUI();
+        showToast('Transmisión en pausa');
+      }
+
+      function updateUI() {
+        if (isBuffering) {
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'none';
+          spinnerIcon.style.display = 'block';
+        } else if (isPlaying) {
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          spinnerIcon.style.display = 'none';
+        } else {
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          spinnerIcon.style.display = 'none';
+        }
+      }
+
+      audio.addEventListener('waiting', () => { isBuffering = true; updateUI(); });
+      audio.addEventListener('playing', () => { isPlaying = true; isBuffering = false; updateUI(); });
+      audio.addEventListener('pause', () => { if (isPlaying) { isPlaying = false; updateUI(); } });
+      audio.addEventListener('error', () => {
+        isBuffering = false;
+        isPlaying = false;
+        updateUI();
+        showToast('Señal en preparación. Intenta de nuevo en unos instantes.');
+      });
+
+      playBtn.addEventListener('click', togglePlay);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+          e.preventDefault();
+          togglePlay();
+        }
+      });
+
+      // 3. Control de Volumen
+      volSlider.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value) / 100;
+        audio.volume = val;
+        if (val > 0) lastVolume = val;
+        updateVolIcon(val);
+      });
+
+      volBtn.addEventListener('click', () => {
+        if (audio.volume > 0) {
+          lastVolume = audio.volume;
+          audio.volume = 0;
+          volSlider.value = 0;
+        } else {
+          audio.volume = lastVolume > 0 ? lastVolume : 0.85;
+          volSlider.value = audio.volume * 100;
+        }
+        updateVolIcon(audio.volume);
+      });
+
+      function updateVolIcon(val) {
+        if (val === 0) {
+          volIcon.innerHTML = '<path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+        } else if (val < 0.5) {
+          volIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+        } else {
+          volIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+        }
+      }
+
+      // 4. Ecualizador de Ondas Sonoras Canvas
+      const ctx = soundwaveCanvas.getContext('2d');
+      function resizeCanvas() {
+        const rect = soundwaveCanvas.parentElement.getBoundingClientRect();
+        soundwaveCanvas.width = rect.width;
+        soundwaveCanvas.height = 180;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const totalBars = 68;
+      const bars = [];
+      for (let i = 0; i < totalBars; i++) {
+        bars.push({ height: 16, target: 16 });
+      }
+
+      let tick = 0;
+      function animateWave() {
+        ctx.clearRect(0, 0, soundwaveCanvas.width, soundwaveCanvas.height);
+        const w = soundwaveCanvas.width;
+        const h = soundwaveCanvas.height;
+        const cy = h / 2;
+        const barW = Math.max(2.5, (w / totalBars) * 0.55);
+        const step = w / totalBars;
+
+        tick += isPlaying ? 0.09 : 0.025;
+
+        for (let i = 0; i < totalBars; i++) {
+          const b = bars[i];
+          const dist = Math.abs(i - totalBars / 2) / (totalBars / 2);
+          const curve = Math.cos(dist * (Math.PI / 2.2));
+
+          if (isPlaying) {
+            const wave = Math.sin(tick * 3 + i * 0.38) * 0.5 + 0.5;
+            const sub = Math.sin(tick * 1.6) > 0.4 ? 20 : 0;
+            b.target = 22 + (wave * 80 * curve) + (sub * curve);
+          } else {
+            const idle = Math.sin(tick + i * 0.22) * 14 * curve;
+            b.target = 18 + Math.max(3, idle);
+          }
+
+          b.height += (b.target - b.height) * 0.28;
+
+          const x = i * step + (step - barW) / 2;
+          const currentH = Math.max(6, b.height);
+          const y = cy - currentH / 2;
+
+          const grad = ctx.createLinearGradient(0, y, 0, y + currentH);
+          grad.addColorStop(0, '#ff71b6');
+          grad.addColorStop(0.5, '#ff2e93');
+          grad.addColorStop(1, '#a855f7');
+
+          ctx.save();
+          ctx.shadowColor = '#ff2e93';
+          ctx.shadowBlur = isPlaying ? 16 : 8;
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.roundRect(x, y, barW, currentH, [barW / 2]);
+          ctx.fill();
+          ctx.restore();
+        }
+        requestAnimationFrame(animateWave);
+      }
+      animateWave();
+
+      // 5. Desplazamiento por arrastre del mouse en la tira de cantantes
+      let isDown = false, startX, scrollLeft;
+      artistsTrack.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - artistsTrack.offsetLeft;
+        scrollLeft = artistsTrack.scrollLeft;
+      });
+      artistsTrack.addEventListener('mouseleave', () => { isDown = false; });
+      artistsTrack.addEventListener('mouseup', () => { isDown = false; });
+      artistsTrack.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - artistsTrack.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        artistsTrack.scrollLeft = scrollLeft - walk;
+      });
+
+      // 6. Media Session API
+      function setupMediaSession() {
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'Frecuencia Pop',
+            artist: 'Radio Online 24/7',
+            album: 'Yanapak Streaming',
+            artwork: [{ src: 'img/portada.webp', sizes: '512x512', type: 'image/webp' }]
+          });
+          navigator.mediaSession.setActionHandler('play', () => playRadio());
+          navigator.mediaSession.setActionHandler('pause', () => pauseRadio());
+        }
+      }
+
+      // 7. Toast helper
+      let timer;
+      function showToast(text) {
+        if (!toastMsg) return;
+        toastMsg.textContent = text;
+        toastMsg.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(() => { toastMsg.classList.remove('show'); }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
